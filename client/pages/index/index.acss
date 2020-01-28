@@ -1,0 +1,35 @@
+/* required by usingComponents */
+.container {
+  padding: 74rpx 32rpx 0 32rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  line-height: 45rpx;
+  padding: 10rpx 3rpx;
+  opacity: 0.49;
+  font-size: 32rpx;
+  color: #333333;
+  border-bottom: 3rpx solid #a1a1a1;
+}
+
+.btn-pay {
+  margin-top: 62rpx;
+  margin-bottom: 62rpx;
+  display: block;
+  width: 100%;
+}
+
+.list {
+  display: block;
+}
+
+.desc {
+  padding-top: 47rpx;
+  border-top: 3rpx solid #eeeeee;
+  text-align: left;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #999999;
+}

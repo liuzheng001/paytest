@@ -1,0 +1,64 @@
+<view class="container">
+  <text class="title">小程序支付示例</text>
+</view>
+<view class="container">
+  <button
+    type="ghost"
+    class="btn-pay"
+    loading="{{ isPaying }}"
+    disabled="{{ isPaying }}"
+    onTap="onClickHandler"
+  >
+    {{ isLogin ? '支付0.01元' : '查看支付记录' }}
+  </button>
+</view>
+<list class="list" a:if="{{ paymentHistory !== null }}">
+  <block a:for="{{ paymentHistory }}">
+    <list-item multipleLine="{{ true }}">
+      {{ item.totalAmount }}元
+      <view class="am-list-brief">{{ item.viewTime }}</view>
+      <view slot="extra">
+        <button
+          data-key="{{ item.key }}"
+          onTap="onRepeatPayHandler"
+          loading="{{ item.actionStatus }}"
+          disabled="{{ item.actionStatus }}"
+          a:if="{{ item.tradeStatus === 'WAIT_BUYER_PAY' }}"
+          size="mini"
+          type="ghost"
+        >
+          待付款
+        </button>
+        <text a:elif="{{ item.tradeStatus === 'TRADE_CLOSED' }}">
+          已退款
+        </text>
+        <button
+          data-key="{{ item.key }}"
+          onTap="onRefundPayHandler"
+          loading="{{ item.actionStatus }}"
+          disabled="{{ item.actionStatus }}"
+          a:elif="{{ item.tradeStatus === 'TRADE_SUCCESS' }}"
+          size="mini"
+          type="ghost"
+        >
+          退款
+        </button>
+        <text a:elif="{{ item.tradeStatus === 'TRADE_FINISHED' }}" size="mini" type="ghost">
+          交易结束
+        </text>
+      </view>
+    </list-item>
+  </block>
+</list>
+<view class="container">
+  <text class="desc">
+    小程序支付和APP支付在小程序内的支付流程与体验基本一致，小程序支付支持核销口碑券及口碑商户优惠，已签约小程序支付或在口碑开店的商户建议接入小程序支付，小程序支付在小程序内不能通过扫码、条码、声波付等方式支付，只能唤起收银台进行支付；
+  </text>
+
+  <button  open-type="getAuthorize"
+  onGetAuthorize="onGetAuthorize" onError="onAuthError"
+  scope='userInfo'>
+      会员基础信息授权
+  </button>
+
+</view>
