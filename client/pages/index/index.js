@@ -22,10 +22,10 @@ Page({
       try {
         const auth = await this.getAuthCode('auth_user');
         const user = await this.getUserByAuthCode(auth.authCode);
-        const history = await this.getPaymentHistoryByUID(user.userId);
+        // const history = await this.getPaymentHistoryByUID(user.userId);
         this.setData({
           isPaying: false,
-          paymentHistory: history,
+          // paymentHistory: history,
           isLogin: true,
           uid: user.userId
         });
